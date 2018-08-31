@@ -81,8 +81,8 @@ def get_areas(url):
 
 对正则表达式 `page-data=\'{\"totalPage\":(\d+),\"curPage\"` 的解读：
 
-- 以东城区为例，打开东城区第一页的源代码，找到显示该辖区有多少页信息的位置，如下图所示，需要匹配到 “19” ，即是需要的信息。
-![链家](https://img-blog.csdn.net/20180827223058491?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x1YmluMTMwMQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+- 以东城区为例，打开东城区第一页的源代码，找到显示该辖区有多少页信息的位置，如下图所示，需要匹配到 “19” ，即是需要的信息。<br>
+![链家](https://github.com/lubin007/chain_rent_data_beijing/blob/master/img/lianjia1.png)
 - 直接表示出包含 “19” 的这段代码，将目标信息用 `(\d+)` 代替，**\d** 表示0-9的任意一个数字，后面有**+**号说明这个0-9单个数位出现一到多次。
 - 此段代码中的 `\'` 、`\"` 中的 **\\** 为转义字符。
 
@@ -110,8 +110,8 @@ def get_pages(area, link):
 
 对正则表达式 `"//div[@class='where']/span[1]/span/text()"` 中 `"/span[1]/span"` 的解读：
 
-- 首先定位到 `class='where'` 的位置，`/span[1]` 表示再搜索到后面索引值为“1”的span（即第二个span）的位置，`/span/text()` 表示上一个位置后的span后面的文本内容。
-![span](https://img-blog.csdn.net/20180829204759139?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x1YmluMTMwMQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+- 首先定位到 `class='where'` 的位置，`/span[1]` 表示再搜索到后面索引值为“1”的span（即第二个span）的位置，`/span/text()` 表示上一个位置后的span后面的文本内容。<br>
+![span](https://github.com/lubin007/chain_rent_data_beijing/blob/master/img/lianjia2.png)
 
 对正则表达式 `"([\u4E00-\u9FA5]+)租房"` 的解读：
 
@@ -182,11 +182,11 @@ if __name__ == '__main__':
 
 > **这里没有进行详细的数据清洗了，详细的步骤请参考公众号之前的文章[Python数据分析过程(基础版)](https://mp.weixin.qq.com/s/lejGoS4Faj7AmXSUuIA-Qg)：**
 
-作者在2018年8月27日爬取下来的数据如下图，共有14177条，10个维度。（因时间关系，没有进一步清洗此数据了。）
-![这里写图片描述](https://img-blog.csdn.net/20180829213730351?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x1YmluMTMwMQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+作者在2018年8月27日爬取下来的数据如下图，共有14177条，10个维度。（因时间关系，没有进一步清洗此数据了。）<br>
+![这里写图片描述](https://github.com/lubin007/chain_rent_data_beijing/blob/master/img/lianjia3.png)
 
-在图中，发现 `square` 的最小值为0，明显不合适，通过下面的代码找到对应的数据，之后删除就行了。
-![零](https://img-blog.csdn.net/20180829215949672?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x1YmluMTMwMQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+在图中，发现 `square` 的最小值为0，明显不合适，通过下面的代码找到对应的数据，之后删除就行了。<br>
+![零](https://github.com/lubin007/chain_rent_data_beijing/blob/master/img/lianjia4.png)
 
 ## 3. 数据分析可视化
 
@@ -227,9 +227,9 @@ v1 = detail_place_main['count']
 v2 = detail_place_main['mean']
 ```
 **house_com的输出：**
-![12](https://img-blog.csdn.net/20180830205825767?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x1YmluMTMwMQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![12](https://github.com/lubin007/chain_rent_data_beijing/blob/master/img/lianjia5.png)
 **detail_place_main的输出：**
-![123](https://img-blog.csdn.net/20180830205941975?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x1YmluMTMwMQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![123](https://github.com/lubin007/chain_rent_data_beijing/blob/master/img/lianjia6.png)
 
 **开始[Python 数据可视化](https://www.jianshu.com/p/b718c307a61c)：**
 
@@ -254,7 +254,7 @@ v2 = detail_place_main['mean']
 line = Line("北京主要路段房租均价") # 初始化具体类型图表
 line.add("路段",attr,v2,is_stack=True,xaxis_rotate=30,yaxix_min=4.2,mark_point=['min','max'],xaxis_interval=0,line_color='lightblue',line_width=4,mark_point_textcolor='black',mark_point_color='lightblue',is_splitline_show=False)
 ```
-![45](https://img-blog.csdn.net/20180830213530517?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x1YmluMTMwMQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![45](https://github.com/lubin007/chain_rent_data_beijing/blob/master/img/lianjia7.png)
 
 ### 3.3 子图二：北京主要路段房屋数量
 ```python
@@ -262,7 +262,7 @@ bar = Bar("北京主要路段房屋数量")
 bar.add("路段",attr,v1,is_stack=True,xaxis_rotate=30,yaxix_min=4.2,xaxis_interval=0,is_splitline_show=False)
 ```
 输出结果如下图：
-![这里写图片描述](https://img-blog.csdn.net/20180830213817583?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x1YmluMTMwMQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![这里写图片描述](https://github.com/lubin007/chain_rent_data_beijing/blob/master/img/lianjia8.png)
 
 ### 3.4 将两个子图结合起来，[Overlap叠加不同类型图表输出](https://blog.csdn.net/qq_42379006/article/details/80841488)
 
@@ -274,7 +274,7 @@ overlap.add(bar) #向overlap中添加图
 overlap.add(line,yaxis_index=1,is_add_yaxis=True)
 overlap.render('北京路段_房屋均价分布图.html')
 ```
-![总](https://img-blog.csdn.net/20180830221752495?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2x1YmluMTMwMQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![总](https://github.com/lubin007/chain_rent_data_beijing/blob/master/img/lianjia9.png)
 
 **注：没有找到资料解决在Overlap中自定义标题的方案。**
 
